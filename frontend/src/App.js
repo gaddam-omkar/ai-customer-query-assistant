@@ -15,7 +15,8 @@ function App() {
     console.log("Frontend sending prompt:", prompt);
 
     try {
-      const res = await axios.post("http://localhost:5000/ask", { prompt });
+      // ✅ Changed from localhost to relative path
+      const res = await axios.post("/ask", { prompt });
       console.log("Frontend received response:", res);
       setResponse(res.data.answer || "🤖 No response generated.");
     } catch (err) {
@@ -61,6 +62,7 @@ function App() {
 }
 
 export default App;
+
 
 
 
