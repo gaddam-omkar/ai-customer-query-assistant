@@ -1,34 +1,36 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+
+// Serve static files from React
+app.use(express.static(path.join(__dirname, "build")));
 
 app.post("/ask", async (req, res) => {
-  const { prompt } = req.body;
-  console.log("Backend received prompt:", prompt);
+  const prompt = req.body.prompt;
 
-  let fakeResponse = "";
-
-  if (prompt.toLowerCase().includes("hello")) {
-    fakeResponse = "Hi there! How can I help you today?";
-  } else if (prompt.toLowerCase().includes("price")) {
-    fakeResponse = "Our product pricing starts at just $49/month.";
-  } else {
-    fakeResponse = "Thank you for your query. We'll get back to you shortly!";
+  if (!prompt) {
+    return res.status(400).json({ error: "Prompt is required" });
   }
 
-  console.log("Backend sending response:", fakeResponse);
-  res.status(200).json({ answer: fakeResponse });
+  // Sample dummy response — replace with actual AI logic later
+  return res.json({ answer: `You asked: ${prompt}` });
+});
+
+// For any other routes, serve the React index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Backend running on http://localhost:${PORT}`);
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
+
 
 
 
