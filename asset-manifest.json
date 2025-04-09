@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ai-customer-query-assistant/static/css/main.7a0185ba.css",
+    "main.js": "/ai-customer-query-assistant/static/js/main.a86cb175.js",
+    "index.html": "/ai-customer-query-assistant/index.html",
+    "main.7a0185ba.css.map": "/ai-customer-query-assistant/static/css/main.7a0185ba.css.map",
+    "main.a86cb175.js.map": "/ai-customer-query-assistant/static/js/main.a86cb175.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a0185ba.css",
+    "static/js/main.a86cb175.js"
+  ]
+}
